@@ -134,6 +134,8 @@ ru_RU.UTF-8 UTF-8
 
 ## В установленной системе
 
+### Настройка интернет соединения
+
 Открыть файл `helix /etc/iwd/main.conf`
 Написать:
 ```
@@ -146,3 +148,25 @@ EnableNetworkConfiguration=true
 2. `systemctl enable --now iwd`
 
 Подключиться к интернету (см пункт "Подключение к интернету")
+
+Установить фаервол `ufw`
+
+Активировать службу: `systemctl enable --now ufw.service`
+
+Выполнить следующие команды конфигурации:
+```
+# ufw default deny
+# ufw allow from 192.168.0.0/24
+# ufw allow Deluge
+# ufw limit ssh
+```
+
+Активировать фаервол: `ufw enable`
+
+### Обслуживание SSD (ВАЖНО!!!)
+
+Если в вашей системе используются ssd диски, необходимо настроить для них периодический trim.
+
+Установить пакет `util-linux`
+
+Включить службу-таймер: `systemctl enable fstrim.timer`
