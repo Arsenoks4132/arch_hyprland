@@ -1,0 +1,80 @@
+{
+	"layer": "top",
+	"margin-top": 10,
+	"modules-left": ["custom/arch", "hyprland/workspaces"],
+	"modules-center": ["clock"],
+	"modules-right": ["tray", "backlight", "pulseaudio", "hyprland/language", "bluetooth", "network", "battery"],
+
+	"hyprland/language": {
+		"format": "󰌌  {}",
+		"format-en": "EN",
+		"format-ru": "RU"
+	},
+    "custom/arch":{
+        "format": " ",
+        "on-click": "wofi --show drun",
+        "on-click-right": "killall wofi",
+		"tooltip": false
+    },
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-muted": "{icon} {volume}%",
+		"on-click":"pavucontrol",
+		"format-icons": {
+			"default": ["", "", ""]
+		},
+		"on-scroll-up": "pamixer --decrease 1",
+		"on-scroll-down": "pamixer --increase 1"
+	},
+	"network": {
+		"format-wifi": "",
+		"format-ethernet": "",
+		"tooltip-format": "{essid} ({signalStrength}%)",
+		"format-linked": "{ifname} (No IP) ",
+		"format-disconnected": "⚠",
+		"on-click": "iwgtk"
+		},
+	"backlight": {
+		"tooltip": false,
+		"format": " {}%",
+		"interval":1,
+		"on-scroll-up": "brightnessctl -q set 1%-",
+		"on-scroll-down": "brightnessctl -q set +1%"
+	},
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+	"tray":{
+		"icon-size":18,
+		"spacing": 10
+	},
+	"clock": {
+		"interval": 1,
+		"format": " {:%H:%M:%S | %d.%m.%y}  ",
+		"tooltip": false
+    },
+    "hyrpland/workspaces": {
+    	"format": "{icon}",
+		"on-scroll-up": "hyprctl dispatch workspace e+1",
+		"on-scroll-down": "hyprctl dispatch workspace e-1",
+		"on-click": "activate"
+	},
+    "bluetooth": {
+        "interval": 30,
+        "format": "{icon}",
+        // "format-alt": "{status}",
+        "format-icons": {
+            "enabled": "",
+            "disabled": ""
+        },
+        "on-click": "blueberry"
+    }
+}

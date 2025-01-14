@@ -1,0 +1,6 @@
+theme = "ayu_dark"
+
+[editor]
+mouse = false
+true-color = true
+color-modes = true
